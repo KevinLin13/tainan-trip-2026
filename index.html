@@ -83,34 +83,199 @@ body{
 }
 .done .content{opacity:.48}
 .done .title{text-decoration:line-through}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#161714;--card:#22231f;--text:#f3f3ee;--muted:#a8aaa3;--line:#363731;
-    --accent:#85c5b1;--accent-soft:#20332d;--move:#1c2833;--action:#332b19;--train:#29243a;
-    --shadow:none
-  }
-  .tabs{background:rgba(22,23,20,.92)}
-  .tab,.btn,.smallbtn,.check{background:#22231f;color:#f3f3ee}
-  .tab.active{background:#f3f3ee;color:#171814;border-color:#f3f3ee}
-  .day-head{background:#f3f3ee;color:#171814}
-  .day-head .route{color:#4f514c}
-  .quick{background:#22231f}
-  .reserve{background:#33342f;color:#c4c5bf}
-  .reserve.hot{background:#482b21;color:#ffd8c7}
+</style>
+<style id="rabbit-p-preview-theme">
+/* Preview only: official/authorized Kanahei artwork is shown from the source pages.
+   This preview is not deployed to GitHub Pages yet. */
+[data-theme-preview="rabbit-p"]{
+  --bg:#fff4f7; --card:#fffdfd; --text:#4a3942; --muted:#866975;
+  --line:#f3d4df; --accent:#e96f93; --accent-soft:#fff0f4;
+  --move:#eaf8ff; --action:#fff1da; --train:#f3edff; --danger:#b44c66;
+  --icon-food:#b97935; --icon-ride:#2b88ae; --icon-walk:#329873; --icon-sight:#7b64b3;
+  --icon-action:#b45b5a; --icon-train:#6e61aa; --icon-stay:#b45e81; --icon-bag:#ad7c39;
+  --icon-neutral:#a87489; --focus:#267c9e;
+  --shadow:0 8px 22px rgba(217,111,145,.12); color-scheme:light;
+}
+body[data-theme-preview="rabbit-p"]{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(255,210,224,.72),transparent 26rem),
+    radial-gradient(circle at 100% 18%,rgba(197,237,250,.68),transparent 24rem),
+    var(--bg);
+  color:var(--text);
+  font-family:"Arial Rounded MT Bold","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  min-height:100dvh;overflow-x:hidden;overscroll-behavior-x:none;text-size-adjust:100%;
+}
+[data-theme-preview="rabbit-p"] .app{padding-top:env(safe-area-inset-top)}
+[data-theme-preview="rabbit-p"] .hero{
+  display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:12px;align-items:center;
+  position:relative;padding:20px 8px 18px;overflow:visible;min-height:154px
+}
+[data-theme-preview="rabbit-p"] .hero-copy{grid-column:1;min-width:0}
+[data-theme-preview="rabbit-p"] .hero-side{
+  grid-column:2;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;min-width:0
+}
+[data-theme-preview="rabbit-p"] .hero-art{
+  position:relative!important;right:auto;top:auto;width:142px;height:104px;z-index:1;pointer-events:none;
+}
+[data-theme-preview="rabbit-p"] .hero-art-main{
+  display:block;width:142px;height:104px;object-fit:contain;filter:drop-shadow(0 7px 7px rgba(158,91,119,.16));
+}
+[data-theme-preview="rabbit-p"] .hero::before{
+  content:"";position:absolute;left:3px;bottom:7px;width:44px;height:8px;border-radius:50%;
+  background:rgba(233,111,147,.12);z-index:0;pointer-events:none
+}
+[data-theme-preview="rabbit-p"] .hero > *{position:relative;z-index:1}
+[data-theme-preview="rabbit-p"] .hero-badge{
+  padding:4px 9px;border:1px solid #c9eafa;border-radius:999px;background:#f0fbff;color:#5c9fba;
+  font-size:11px;font-weight:800;letter-spacing:.04em;white-space:nowrap
+}
+[data-theme-preview="rabbit-p"] .hero h1{font-size:29px;color:#b34e70;letter-spacing:.02em;text-shadow:0 2px 0 #fff;max-width:100%}
+[data-theme-preview="rabbit-p"] .hero h1::before,
+[data-theme-preview="rabbit-p"] .hero h1::after{content:"";display:inline-block;width:9px;height:23px;
+  margin:0 3px 0 0;border-radius:9px 9px 4px 4px;background:#f6a8bd;vertical-align:-2px;transform:rotate(-16deg)}
+[data-theme-preview="rabbit-p"] .hero h1::after{margin:0 9px 0 1px;background:#ffd2de;transform:rotate(13deg)}
+[data-theme-preview="rabbit-p"] .hero p{color:#755c68;font-size:15px;line-height:1.65}
+[data-theme-preview="rabbit-p"] .tabs{background:rgba(255,244,247,.9);scroll-margin-top:72px}
+[data-theme-preview="rabbit-p"] .tab{border:2px solid #f1d2de;background:#fff;color:#61414f;border-radius:18px;box-shadow:0 3px 10px rgba(217,111,145,.1)}
+[data-theme-preview="rabbit-p"] .tab.active{border-color:#e96f93;background:#e96f93;color:#fff}
+[data-theme-preview="rabbit-p"] .tab:nth-child(2).active{border-color:#72c2e2;background:#72c2e2}
+[data-theme-preview="rabbit-p"] .tab:nth-child(3).active{border-color:#a68bd7;background:#a68bd7}
+[data-theme-preview="rabbit-p"] .day-head{background:linear-gradient(135deg,#ef81a2,#f5b1c3);border:0;box-shadow:0 8px 20px rgba(217,111,145,.2)}
+[data-theme-preview="rabbit-p"] .day-head .route{color:#fff3f7}
+[data-theme-preview="rabbit-p"] .quick{background:#fff;border:2px dashed #efbfd0;color:#866975;box-shadow:0 4px 12px rgba(217,111,145,.06)}
+[data-theme-preview="rabbit-p"] .card{border:2px solid var(--line);border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
+[data-theme-preview="rabbit-p"] .card.move{background:#eaf8ff;border-color:#c7eaf8}
+[data-theme-preview="rabbit-p"] .card.action{background:#fff1da;border-color:#f4d49e}
+[data-theme-preview="rabbit-p"] .card.train{background:#f3edff;border-color:#d9cdf6}
+[data-theme-preview="rabbit-p"] .time{color:#d35c80}
+[data-theme-preview="rabbit-p"] .time{font-variant-numeric:tabular-nums}
+[data-theme-preview="rabbit-p"] .meta{font-size:14px;line-height:1.55}
+[data-theme-preview="rabbit-p"] .note{font-size:14px;line-height:1.62}
+[data-theme-preview="rabbit-p"] .quick{font-size:14px;line-height:1.6}
+[data-theme-preview="rabbit-p"] .title{
+  display:flex;align-items:flex-start;gap:7px;overflow-wrap:anywhere
+}
+[data-theme-preview="rabbit-p"] .title > span:last-child{min-width:0;overflow-wrap:anywhere}
+[data-theme-preview="rabbit-p"] .title-icon{
+  display:grid;place-items:center;width:20px;height:20px;flex:0 0 20px;margin-top:1px;color:var(--icon-neutral)
+}
+[data-theme-preview="rabbit-p"] .title-icon svg{
+  width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round
+}
+[data-theme-preview="rabbit-p"] .title-icon.food{color:var(--icon-food)}
+[data-theme-preview="rabbit-p"] .title-icon.ride{color:var(--icon-ride)}
+[data-theme-preview="rabbit-p"] .title-icon.walk{color:var(--icon-walk)}
+[data-theme-preview="rabbit-p"] .title-icon.sight{color:var(--icon-sight)}
+[data-theme-preview="rabbit-p"] .title-icon.action{color:var(--icon-action)}
+[data-theme-preview="rabbit-p"] .title-icon.train{color:var(--icon-train)}
+[data-theme-preview="rabbit-p"] .title-icon.stay{color:var(--icon-stay)}
+[data-theme-preview="rabbit-p"] .title-icon.bag{color:var(--icon-bag)}
+[data-theme-preview="rabbit-p"] .title-emoji{font-size:18px;line-height:20px}
+[data-theme-preview="rabbit-p"] .meta,
+[data-theme-preview="rabbit-p"] .note,
+[data-theme-preview="rabbit-p"] .route{overflow-wrap:anywhere}
+[data-theme-preview="rabbit-p"] .check{width:26px;height:26px;flex-basis:26px;border:2px solid #dfaabd;background:#fff;border-radius:9px}
+[data-theme-preview="rabbit-p"] .check:checked{background:#e96f93;border-color:#e96f93}
+[data-theme-preview="rabbit-p"] .top{display:grid;grid-template-columns:26px minmax(0,1fr) 86px;gap:10px;align-items:start}
+[data-theme-preview="rabbit-p"] .top .check{grid-column:1;grid-row:1}
+[data-theme-preview="rabbit-p"] .top .content{grid-column:2;grid-row:1;min-width:0}
+[data-theme-preview="rabbit-p"] .card-visual{
+  grid-column:3;grid-row:1;width:86px;display:flex;align-items:flex-start;justify-content:flex-end;min-width:0
+}
+[data-theme-preview="rabbit-p"] .card-character{
+  display:block;width:86px;height:66px;object-fit:contain;align-self:flex-end;padding:3px;
+  border:1px solid #f3d4df;border-radius:14px;background:rgba(255,255,255,.82);
+  filter:drop-shadow(0 4px 6px rgba(158,91,119,.1))
+}
+[data-theme-preview="rabbit-p"] .card-visual.ice-visual .card-character{
+  object-fit:cover;object-position:74% 50%
+}
+[data-theme-preview="rabbit-p"] .card-visual.drink-visual .card-character{
+  object-fit:cover;object-position:50% 50%
+}
+[data-theme-preview="rabbit-p"] .card-visual.luggage-visual .card-character{
+  object-fit:cover;object-position:50% 12%
+}
+[data-theme-preview="rabbit-p"] .card-visual.order-visual .card-character{
+  object-fit:cover;object-position:100% 22%
+}
+[data-theme-preview="rabbit-p"] .reserve{background:#fff0f4;color:#a84968;border:1px solid #f1cad7}
+[data-theme-preview="rabbit-p"] .reserve.hot{background:#ffddd8;color:#ad4a58}
+[data-theme-preview="rabbit-p"] .btn{min-height:44px;border-radius:14px;border:2px solid #f0d4df;background:#fff;color:#61414f}
+[data-theme-preview="rabbit-p"] .btn.primary{border-color:#73c4e5;background:linear-gradient(135deg,#e96f93,#72c2e2);color:#fff}
+[data-theme-preview="rabbit-p"] .btn.call{background:#fff7e7;border-color:#f2d39b;color:#8d5a2b}
+[data-theme-preview="rabbit-p"] .smallbtn{min-height:44px;border:2px solid #f0d4df;background:#fff;color:#61414f}
+[data-theme-preview="rabbit-p"] .footer{color:#947582}
+[data-theme-preview="rabbit-p"] .footer-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+[data-theme-preview="rabbit-p"] .footer-copy{min-width:0}
+[data-theme-preview="rabbit-p"] .footer-art{display:block;width:62px;height:62px;flex:0 0 62px;object-fit:contain;filter:drop-shadow(0 5px 5px rgba(158,91,119,.12))}
+[data-theme-preview="rabbit-p"] button,
+[data-theme-preview="rabbit-p"] a{touch-action:manipulation}
+[data-theme-preview="rabbit-p"] button:focus-visible,
+[data-theme-preview="rabbit-p"] a:focus-visible,
+[data-theme-preview="rabbit-p"] input:focus-visible{outline:3px solid #72c2e2;outline-offset:3px}
+[data-theme-preview="rabbit-p"] .card:focus-within{border-color:var(--focus);box-shadow:0 0 0 3px rgba(38,124,158,.16),var(--shadow)}
+[data-theme-preview="rabbit-p"] .check{cursor:pointer}
+[data-theme-preview="rabbit-p"] .tab,
+[data-theme-preview="rabbit-p"] .smallbtn,
+[data-theme-preview="rabbit-p"] .btn{
+  cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease
+}
+[data-theme-preview="rabbit-p"] .tab:active,
+[data-theme-preview="rabbit-p"] .smallbtn:active,
+[data-theme-preview="rabbit-p"] .btn:active{transform:scale(.98)}
+[data-theme-preview="rabbit-p"] .card-character{aspect-ratio:4/3}
+[data-theme-preview="rabbit-p"] .day{scroll-margin-top:76px}
+@media (prefers-reduced-motion:reduce){
+  [data-theme-preview="rabbit-p"] *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+@media (max-width:390px){
+  [data-theme-preview="rabbit-p"] .hero{grid-template-columns:minmax(0,1fr) 110px;gap:8px;padding:18px 4px 16px;min-height:136px}
+  [data-theme-preview="rabbit-p"] .hero-art{width:108px;height:82px}
+  [data-theme-preview="rabbit-p"] .hero-art-main{width:108px;height:82px}
+  [data-theme-preview="rabbit-p"] .hero-badge{font-size:10px;padding:3px 7px}
+  [data-theme-preview="rabbit-p"] .hero h1{font-size:26px}
+  [data-theme-preview="rabbit-p"] .top{grid-template-columns:26px minmax(0,1fr) 74px;gap:8px}
+  [data-theme-preview="rabbit-p"] .card-visual{width:74px}
+  [data-theme-preview="rabbit-p"] .card-character{width:74px;height:58px;border-radius:12px}
+  [data-theme-preview="rabbit-p"] .scooter-visual{height:58px}
+  [data-theme-preview="rabbit-p"] .title-icon{width:19px;height:19px;flex-basis:19px}
+  [data-theme-preview="rabbit-p"] .title-icon svg{width:17px;height:17px}
 }
 </style>
+<style>
+.scooter-visual{position:relative;height:66px}
+[data-theme-preview="rabbit-p"] .scooter-visual .card-character{
+  width:100%;height:100%;padding:3px;aspect-ratio:4/3;object-fit:contain;
+  border:1px solid #f3d4df;border-radius:14px;background:rgba(255,255,255,.82);
+  filter:drop-shadow(0 4px 6px rgba(158,91,119,.1))
+}
+.exhaust{position:absolute;left:70%;top:69%;width:8px;height:6px;border:1.5px solid #603726;border-radius:50%;opacity:0;animation:scooter-exhaust 1.6s ease-out infinite;pointer-events:none}
+.exhaust.second{animation-delay:.8s}
+@keyframes scooter-exhaust{0%{transform:translateX(0) scale(.5);opacity:0}20%{opacity:.65}100%{transform:translateX(15px) scale(1.15);opacity:0}}
+@media(prefers-reduced-motion:reduce){.exhaust{animation:none;opacity:.3}.exhaust.second{display:none}}
+</style>
 </head>
-<body>
+<body data-theme-preview="rabbit-p">
 <div class="app">
   <header class="hero">
-    <h1>台南三天兩夜</h1>
-    <p>2026/9/13–9/15 · 手機速查版<br>點「導航」或「Google Maps」即可直接開啟地圖。</p>
+    <div class="hero-copy">
+      <h1>台南三天兩夜</h1>
+      <p>2026/9/13–9/15 · 手機速查版<br>點「導航」或「Google Maps」即可直接開啟地圖。</p>
+    </div>
+    <div class="hero-side">
+      <div class="hero-art" aria-hidden="true">
+        <img class="hero-art-main" src="https://kanaheis-small-animals.jp/wp-content/themes/kanahei20251015/assets/img/top/chara_pisukeusagi.webp" alt="" width="142" height="104" decoding="async">
+      </div>
+      <div class="hero-badge">兔兔 × P 助</div>
+    </div>
   </header>
 
-  <nav class="tabs" aria-label="切換日期">
-    <button class="tab active" data-day="day1">Day 1<br><small>9/13</small></button>
-    <button class="tab" data-day="day2">Day 2<br><small>9/14</small></button>
-    <button class="tab" data-day="day3">Day 3<br><small>9/15</small></button>
+  <nav class="tabs" role="tablist" aria-label="切換日期">
+    <button class="tab active" id="tab-day1" role="tab" aria-selected="true" aria-controls="day1" data-day="day1">Day 1<br><small>9/13</small></button>
+    <button class="tab" id="tab-day2" role="tab" aria-selected="false" aria-controls="day2" data-day="day2">Day 2<br><small>9/14</small></button>
+    <button class="tab" id="tab-day3" role="tab" aria-selected="false" aria-controls="day3" data-day="day3">Day 3<br><small>9/15</small></button>
   </nav>
 
   <div class="tools">
@@ -121,8 +286,14 @@ body{
   <main id="content"></main>
 
   <footer class="footer">
-    行程內容依最終確認版試算表整理。<br>
-    Google Maps 導航需連線；行程文字本身可直接在此頁查看。
+    <div class="footer-inner">
+      <div class="footer-copy">
+        行程內容依最終確認版試算表整理。<br>
+        Google Maps 導航需連線；行程文字本身可直接在此頁查看。<br>
+        角色圖片：© kanahei / TXCOM
+      </div>
+      <img class="footer-art" src="https://kanaheis-small-animals.jp/wp-content/themes/kanahei20251015/assets/img/common/pisuke_bottom.webp" alt="" width="62" height="62" loading="lazy" decoding="async" aria-hidden="true">
+    </div>
   </footer>
 </div>
 
@@ -140,6 +311,57 @@ function isHot(reserve, place){
   return /要先|建議|先聯絡|預訂|下單|車票/.test(t) && !/不用/.test(t);
 }
 
+function characterArt(row){
+  const text = `${row.place ?? ''} ${row.note ?? ''} ${row.transport ?? ''}`;
+  let type = 'rest';
+  if(row.kind === 'train') type = 'train';
+  else if(row.kind !== 'move' && /下單|外帶|取餐|Foodpanda/.test(text)) type = 'order';
+  else if(row.kind !== 'move' && /行李/.test(text)) type = 'luggage';
+  else if(row.kind === 'action' || /電話|預訂|確認/.test(text)) type = 'action';
+  else if(row.kind === 'move' && /WeMo|機車|騎/.test(text)) type = 'ride';
+  else if(row.kind === 'move' && /步行|散步/.test(text)) type = 'walk';
+  else if(/共享機車|找車/.test(text)) type = 'ride';
+  else if(/冰品|冰淇淋|冰棒|芋仔冰/.test(text)) type = 'ice';
+  else if(/飲料|取飲料|杏仁茶/.test(text)) type = 'drink';
+  else if(row.icon === '🍴' || /早餐|吃|餐|湯|割包|魚羹|臭豆腐|米糕|蝦捲|蔥肉餅|蔥油餅|意麵|肉燥/.test(text)) type = 'food';
+  else if(row.icon === '📍' || /博物館|夜市|神農街|藝術街|艦|樹屋|平臺|美術館/.test(text)) type = 'sight';
+  else if(/旅店|飯店|住宿|休息|行李/.test(text)) type = 'stay';
+
+  const characterImages = {
+    food: 'https://ingram.co.jp/english/lp/images/kanahei/gallery5.gif',
+    ride: 'scooter-cutout-v2.png',
+    walk: 'https://ingram.co.jp/english/lp/images/kanahei/gallery2.gif',
+    ice: 'https://prcdn.freetls.fastly.net/release_image/515/279/515-279-1dfe3a51748a09736802c6447b1348dc-2729x1071.jpg',
+    drink: 'https://art.parco.jp/acr/images/w660/kannpai.jpg',
+    luggage: 'https://www.4gamer.net/games/668/G066869/SS/006.jpg',
+    order: 'https://kanaheis-small-animals.jp/wp-content/uploads/2025/05/LINEshopping_kanahei_blog.png',
+    sight: 'https://ingram.co.jp/english/lp/images/kanahei/gallery7.gif',
+    action: 'https://ingram.co.jp/english/lp/images/kanahei/gallery9.gif',
+    train: 'https://cdn.kyodonewsprwire.jp/prwfile/release/M105230/201901172328/_prw_PI1lg_9Imw2h2v.jpg',
+    stay: 'https://ingram.co.jp/english/lp/images/kanahei/gallery3.gif',
+    rest: 'https://ingram.co.jp/english/lp/images/kanahei/gallery12.gif'
+  };
+  return `<div class="card-visual ${type}-visual ${type === 'ride' ? 'scooter-visual' : ''}" aria-hidden="true">
+    <img class="card-character" src="${characterImages[type]}" alt="" width="86" height="66" loading="lazy" decoding="async">
+    ${type === 'ride' ? '<span class="exhaust"></span><span class="exhaust second"></span>' : ''}
+  </div>`;
+}
+
+function titleIcon(row){
+  const icons = {
+    '🍴': `<span class="title-icon food" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 3v8M3 3v4M7 3v4M3 7h4M5 11v10M16 3v18M16 3c3 2 4 5 0 8M16 11h5"/></svg></span>`,
+    '🛵': `<span class="title-icon ride" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 18h7l2-7h3l2 7M10 11h5M14 11l-2-3h-3M18 8h2l1-2"/></svg></span>`,
+    '🚆': `<span class="title-icon train" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M8 13h3V8H8zM13 8h3v5h-3zM8 18l-2 3M16 18l2 3M9 21h6M7 16h10"/></svg></span>`,
+    '🚶': `<span class="title-icon walk" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 15c-2-1-3-4-2-6 1-1 2-1 3 1 1 2 1 4 0 5-.3.4-.6.4-1 0ZM16 9c2 1 3 4 2 6-1 1-2 1-3-1-1-2-1-4 0-5 .3-.4.6-.4 1 0Z"/></svg></span>`,
+    '☎': `<span class="title-icon action" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4h3l1.3 3.2-2 1.5a13 13 0 0 0 6 6l1.5-2L20 14v3c0 1-1 2-2 2C10.3 19 5 13.7 5 6c0-1 1-2 2-2Z"/></svg></span>`,
+    '🏨': `<span class="title-icon stay" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m3 10 9-7 9 7v10H3V10Z"/><path d="M7 20v-6h10v6M7 16h10M10 14v-2h4v2"/></svg></span>`,
+    '📍': `<span class="title-icon sight" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 10h16L12 4 4 10ZM6 10v9M10 10v9M14 10v9M18 10v9M4 19h16"/></svg></span>`,
+    '🛍': `<span class="title-icon bag" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></span>`,
+    '•': `<span class="title-icon neutral" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="2.5"/></svg></span>`
+  };
+  return icons[row.icon] || `<span class="title-emoji" aria-hidden="true">${esc(row.icon)}</span>`;
+}
+
 function render(){
   const root = document.getElementById('content');
   root.innerHTML = days.map((d, di) => {
@@ -148,7 +370,7 @@ function render(){
     ).slice(0,7);
 
     return `
-      <section class="day ${di===0?'active':''}" id="${d.id}">
+      <section class="day ${di===0?'active':''}" id="${d.id}" role="tabpanel" aria-labelledby="tab-${d.id}" tabindex="-1">
         <div class="day-head">
           <div class="date">${esc(d.day)}｜${esc(d.date)}</div>
           <div class="route">${esc(d.route)}</div>
@@ -174,12 +396,13 @@ function render(){
                   <input class="check" type="checkbox" ${checked?'checked':''} aria-label="標記完成">
                   <div class="content">
                     <div class="time">${esc(r.time)}</div>
-                    <div class="title">${esc(r.icon)} ${esc(r.place)}</div>
+                    <div class="title">${titleIcon(r)}<span>${esc(r.place)}</span></div>
                     ${r.transport && r.transport !== '—' ? `<div class="meta">${esc(r.transport)}</div>` : ''}
                     ${r.note ? `<div class="note">${esc(r.note)}</div>` : ''}
                     ${r.reserve && r.reserve !== '—' ? `<span class="reserve ${hot?'hot':''}">${esc(r.reserve)}</span>` : ''}
                     ${buttons ? `<div class="actions">${buttons}</div>` : ''}
                   </div>
+                  ${characterArt(r)}
                 </div>
               </article>
             `;
@@ -200,8 +423,16 @@ function render(){
 }
 
 function switchDay(dayId){
-  document.querySelectorAll('.day').forEach(x=>x.classList.toggle('active',x.id===dayId));
-  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.day===dayId));
+  document.querySelectorAll('.day').forEach(x=>{
+    const active = x.id === dayId;
+    x.classList.toggle('active',active);
+    x.hidden = !active;
+  });
+  document.querySelectorAll('.tab').forEach(x=>{
+    const active = x.dataset.day === dayId;
+    x.classList.toggle('active',active);
+    x.setAttribute('aria-selected',active ? 'true' : 'false');
+  });
   localStorage.setItem('tainan-active-day', dayId);
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -213,7 +444,7 @@ document.querySelectorAll('.tab').forEach(btn=>{
 });
 
 const savedDay = localStorage.getItem('tainan-active-day');
-if(savedDay && document.getElementById(savedDay)) switchDay(savedDay);
+switchDay(savedDay && document.getElementById(savedDay) ? savedDay : 'day1');
 
 document.getElementById('currentBtn').addEventListener('click',()=>{
   const active = document.querySelector('.day.active');
