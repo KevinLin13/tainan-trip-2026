@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f7f7f3">
+<title>台南三天兩夜行程｜9/13–9/15</title>
+<style>
+:root{
+  --bg:#f7f7f3; --card:#fff; --text:#20211f; --muted:#6f716b;
+  --line:#e6e5df; --accent:#2f6f5e; --accent-soft:#e9f2ee;
+  --move:#eef4fb; --action:#fff4d9; --train:#eeeafb; --danger:#9b4d2d;
+  --shadow:0 4px 18px rgba(33,35,32,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.app{max-width:760px;margin:0 auto;padding:env(safe-area-inset-top) 14px calc(32px + env(safe-area-inset-bottom))}
+.hero{padding:22px 4px 12px}
+.hero h1{font-size:25px;line-height:1.2;margin:0 0 7px}
+.hero p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+.tabs{
+  position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(3,1fr);gap:7px;
+  padding:10px 0;background:rgba(247,247,243,.92);backdrop-filter:blur(12px);
+}
+.tab{
+  border:1px solid var(--line);background:#fff;color:var(--text);border-radius:13px;
+  padding:11px 6px;font-weight:750;font-size:14px;box-shadow:0 1px 3px rgba(0,0,0,.03)
+}
+.tab.active{background:var(--text);color:#fff;border-color:var(--text)}
+.day{display:none}.day.active{display:block}
+.day-head{margin:9px 0 14px;padding:16px;border-radius:18px;background:#20211f;color:white}
+.day-head .date{font-size:20px;font-weight:800}
+.day-head .route{margin-top:8px;font-size:12.5px;line-height:1.6;color:#d9d9d5}
+.quick{
+  margin:0 0 14px;padding:13px 14px;background:#fff;border:1px solid var(--line);
+  border-radius:15px;font-size:13px;line-height:1.55;color:var(--muted)
+}
+.timeline{position:relative}
+.card{
+  position:relative;background:var(--card);border:1px solid var(--line);border-radius:17px;
+  padding:15px 14px;margin:0 0 10px;box-shadow:var(--shadow)
+}
+.card.move{background:var(--move);box-shadow:none}
+.card.action{background:var(--action);border-color:#ead49b}
+.card.train{background:var(--train);border-color:#d7d0ef}
+.top{display:flex;gap:10px;align-items:flex-start}
+.check{
+  width:24px;height:24px;flex:0 0 24px;border:1.5px solid #c8c9c4;border-radius:8px;background:#fff;
+  appearance:none;-webkit-appearance:none;position:relative;margin:1px 0 0
+}
+.check:checked{background:var(--accent);border-color:var(--accent)}
+.check:checked:after{content:"✓";position:absolute;color:#fff;font-weight:900;left:5px;top:0px;font-size:16px}
+.content{min-width:0;flex:1}
+.time{font-size:13px;font-weight:800;color:var(--accent);margin-bottom:4px}
+.title{font-size:17px;font-weight:820;line-height:1.35;word-break:break-word}
+.meta{margin-top:7px;font-size:13.5px;color:#50524d;line-height:1.5}
+.note{margin-top:8px;font-size:13.5px;line-height:1.58;color:var(--muted)}
+.reserve{
+  display:inline-block;margin-top:9px;padding:4px 8px;border-radius:999px;
+  background:#f1f1ed;color:#555851;font-size:12px;font-weight:700
+}
+.reserve.hot{background:#ffe3d7;color:var(--danger)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 13px;
+  border-radius:12px;text-decoration:none;font-size:13.5px;font-weight:780;border:1px solid var(--line);
+  background:#fff;color:var(--text)
+}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+.btn.call{background:#fff7ef;border-color:#f1cdae;color:#8b4d22}
+.footer{padding:18px 4px 4px;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}
+.tools{display:flex;gap:8px;margin:0 0 12px}
+.smallbtn{
+  flex:1;border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 8px;
+  font-weight:700;color:#444;font-size:12.5px
+}
+.done .content{opacity:.48}
+.done .title{text-decoration:line-through}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#161714;--card:#22231f;--text:#f3f3ee;--muted:#a8aaa3;--line:#363731;
+    --accent:#85c5b1;--accent-soft:#20332d;--move:#1c2833;--action:#332b19;--train:#29243a;
+    --shadow:none
+  }
+  .tabs{background:rgba(22,23,20,.92)}
+  .tab,.btn,.smallbtn,.check{background:#22231f;color:#f3f3ee}
+  .tab.active{background:#f3f3ee;color:#171814;border-color:#f3f3ee}
+  .day-head{background:#f3f3ee;color:#171814}
+  .day-head .route{color:#4f514c}
+  .quick{background:#22231f}
+  .reserve{background:#33342f;color:#c4c5bf}
+  .reserve.hot{background:#482b21;color:#ffd8c7}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <h1>台南三天兩夜</h1>
+    <p>2026/9/13–9/15 · 手機速查版<br>點「導航」或「Google Maps」即可直接開啟地圖。</p>
+  </header>
+
+  <nav class="tabs" aria-label="切換日期">
+    <button class="tab active" data-day="day1">Day 1<br><small>9/13</small></button>
+    <button class="tab" data-day="day2">Day 2<br><small>9/14</small></button>
+    <button class="tab" data-day="day3">Day 3<br><small>9/15</small></button>
+  </nav>
+
+  <div class="tools">
+    <button class="smallbtn" id="currentBtn">跳到未完成</button>
+    <button class="smallbtn" id="resetBtn">重設勾選</button>
+  </div>
+
+  <main id="content"></main>
+
+  <footer class="footer">
+    行程內容依最終確認版試算表整理。<br>
+    Google Maps 導航需連線；行程文字本身可直接在此頁查看。
+  </footer>
+</div>
+
+<script>
+const days = [{"id": "day1", "day": "Day 1", "date": "9/13（日）", "route": "臺南車站 → 早安魚仔湯 → 太陽牌冰品 → 道達旅店 → 夏林臭豆腐 → 司法博物館 → 道達旅店 → 花園夜市 → 神農街 → 道達旅店", "rows": [{"time": "10:31", "place": "台中 → 臺南火車", "transport": "臺鐵", "note": "三天行程開始。", "reserve": "車票已確定", "kind": "train", "icon": "🚆", "map_url": null, "nav_url": null, "phones": []}, {"time": "12:28–12:40", "place": "出站、整理、找共享機車", "transport": "—｜約12分", "note": "預留約12分鐘，不用趕；", "reserve": "開啟單日包車", "kind": "stop", "icon": "•", "map_url": null, "nav_url": null, "phones": []}, {"time": "12:40–12:50", "place": "前往早安魚仔湯", "transport": "WeMo｜850 m｜約10分", "note": "含基本找車、停車緩衝。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%97%A9%E5%AE%89%E9%AD%9A%E4%BB%94%E6%B9%AF%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "12:50–13:20", "place": "早安魚仔湯", "transport": "—", "note": "實際停留約30分；第一餐控制份量。（海鱸魚肉薑絲湯小＋傳統肉燥飯＋滷鴨蛋＋油豆腐）", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%97%A9%E5%AE%89%E9%AD%9A%E4%BB%94%E6%B9%AF%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "13:20–13:25", "place": "前往太陽牌冰品", "transport": "WeMo｜270 m｜約5分", "note": "很短的一段。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E9%99%BD%E7%89%8C%E5%86%B0%E5%93%81%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E6%97%A9%E5%AE%89%E9%AD%9A%E4%BB%94%E6%B9%AF%20%E5%8F%B0%E5%8D%97&destination=%E5%A4%AA%E9%99%BD%E7%89%8C%E5%86%B0%E5%93%81%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "13:25–13:40", "place": "太陽牌冰品", "transport": "—", "note": "實際停留約15分；草湖芋仔冰一份（芋頭＋花生＋紅豆＋其他）。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E9%99%BD%E7%89%8C%E5%86%B0%E5%93%81%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "13:40–13:45", "place": "打電話給夏林臭豆腐", "transport": "電話062912542｜約5分", "note": "電話預約取號碼牌。", "reserve": "要先聯絡", "kind": "action", "icon": "☎", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%8F%E6%9E%97%E8%87%AD%E8%B1%86%E8%85%90%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": ["062912542"]}, {"time": "13:45–14:00", "place": "前往道達旅店", "transport": "WeMo｜1.9 km｜約15分", "note": "有行李，移動時間抓寬一點。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%A4%AA%E9%99%BD%E7%89%8C%E5%86%B0%E5%93%81%20%E5%8F%B0%E5%8D%97&destination=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "14:00–14:15", "place": "道達旅店寄放行李", "transport": "—", "note": "實際約15分；不在飯店休息。", "reserve": "已訂住宿", "kind": "stop", "icon": "🏨", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "14:15–14:25", "place": "前往夏林臭豆腐", "transport": "WeMo｜2.0 km｜約10分", "note": "到場後視叫號狀況。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%8F%E6%9E%97%E8%87%AD%E8%B1%86%E8%85%90%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&destination=%E5%A4%8F%E6%9E%97%E8%87%AD%E8%B1%86%E8%85%90%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "14:25–14:50", "place": "夏林臭豆腐", "transport": "—", "note": "實際約25分；視現場空位情況決定是否外帶。", "reserve": "13:40–13:45先聯絡", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%8F%E6%9E%97%E8%87%AD%E8%B1%86%E8%85%90%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "14:50–15:05", "place": "前往司法博物館", "transport": "WeMo｜2.0 km｜約15分", "note": "含停車、進館緩衝。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8D%97%E5%8F%B8%E6%B3%95%E5%8D%9A%E7%89%A9%E9%A4%A8", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%A4%8F%E6%9E%97%E8%87%AD%E8%B1%86%E8%85%90%20%E5%8F%B0%E5%8D%97&destination=%E8%87%BA%E5%8D%97%E5%8F%B8%E6%B3%95%E5%8D%9A%E7%89%A9%E9%A4%A8&travelmode=driving", "phones": []}, {"time": "15:05–16:05", "place": "司法博物館", "transport": "—", "note": "完整1小時參觀。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8D%97%E5%8F%B8%E6%B3%95%E5%8D%9A%E7%89%A9%E9%A4%A8", "nav_url": null, "phones": []}, {"time": "16:05–16:20", "place": "前往道達旅店", "transport": "WeMo｜1.1 km｜約15分", "note": "回飯店正式 Check-in。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E8%87%BA%E5%8D%97%E5%8F%B8%E6%B3%95%E5%8D%9A%E7%89%A9%E9%A4%A8&destination=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "16:20–17:20", "place": "Check-in＋飯店休息", "transport": "—", "note": "實際休息約1小時。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "17:20–17:40", "place": "前往花園夜市", "transport": "WeMo｜2.5 km｜約20分", "note": "傍晚車流＋停車抓寬。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8D%97%E8%8A%B1%E5%9C%92%E5%A4%9C%E5%B8%82", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&destination=%E5%8F%B0%E5%8D%97%E8%8A%B1%E5%9C%92%E5%A4%9C%E5%B8%82&travelmode=driving", "phones": []}, {"time": "17:40–20:00", "place": "台南花園夜市", "transport": "—", "note": "實際約2小時20分；晚餐慢慢逛。", "reserve": "不用", "kind": "stop", "icon": "•", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8D%97%E8%8A%B1%E5%9C%92%E5%A4%9C%E5%B8%82", "nav_url": null, "phones": []}, {"time": "20:00–20:20", "place": "前往神農街", "transport": "WeMo｜2.0 km｜約20分", "note": "夜市離場也預留時間。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E8%BE%B2%E8%A1%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%8F%B0%E5%8D%97%E8%8A%B1%E5%9C%92%E5%A4%9C%E5%B8%82&destination=%E7%A5%9E%E8%BE%B2%E8%A1%97%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "20:20–21:20", "place": "神農街夜間散步", "transport": "—", "note": "主要看老街、老屋、夜間燈光與沿途小店。累了就提早回飯店。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E8%BE%B2%E8%A1%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "21:20–21:30", "place": "前往道達旅店", "transport": "步行｜500 m｜約10分", "note": "散步回飯店。", "reserve": "—", "kind": "move", "icon": "🚶", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E7%A5%9E%E8%BE%B2%E8%A1%97%20%E5%8F%B0%E5%8D%97&destination=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&travelmode=walking", "phones": []}, {"time": "21:30後", "place": "回飯店休息", "transport": "—", "note": "Day 1 結束。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}]}, {"id": "day2", "day": "Day 2", "date": "9/14（一）", "route": "道達旅店 → 阿松割包 → 好味紅燒𩵚魠魚羹 → 西門淺草 → 又又美 FotoShop → 保安路米糕 → 府城黃家蝦捲 → 德陽艦 → 安平樹屋 → 觀夕平臺 → 福昇 → 水仙宮米糕 → 阿卿杏仁茶 → 海安路藝術街 → 道達旅店", "rows": [{"time": "07:00–07:30", "place": "道達旅店早餐", "transport": "—", "note": "實際約30分。", "reserve": "—", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "07:30–10:45", "place": "飯店休息、整理", "transport": "—", "note": "上午不排景點。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": null, "nav_url": null, "phones": []}, {"time": "10:45–10:55", "place": "前往阿松割包", "transport": "WeMo｜800 m｜約10分", "note": "正式開始 Day 2。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%98%BF%E6%9D%BE%E5%89%B2%E5%8C%85%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&destination=%E9%98%BF%E6%9D%BE%E5%89%B2%E5%8C%85%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "10:55–11:25", "place": "阿松割包", "transport": "—", "note": "實際約30分；豬舌割包 1 份 2 顆，兩人各 1 顆。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%98%BF%E6%9D%BE%E5%89%B2%E5%8C%85%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "11:25", "place": "前往好味紅燒𩵚魠魚羹", "transport": "步行｜同區｜約0分", "note": "同區短距離移動。", "reserve": "—", "kind": "move", "icon": "🚶", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A5%BD%E5%91%B3%E7%B4%85%E7%87%92%F0%A9%B5%9A%E9%AD%A0%E9%AD%9A%E7%BE%B9%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%98%BF%E6%9D%BE%E5%89%B2%E5%8C%85%20%E5%8F%B0%E5%8D%97&destination=%E5%A5%BD%E5%91%B3%E7%B4%85%E7%87%92%F0%A9%B5%9A%E9%AD%A0%E9%AD%9A%E7%BE%B9%20%E5%8F%B0%E5%8D%97&travelmode=walking", "phones": []}, {"time": "11:25–11:45", "place": "好味紅燒𩵚魠魚羹", "transport": "—", "note": "實際約20分；𩵚魠魚羹 1 碗兩人分，不用再加羹飯／羹麵。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A5%BD%E5%91%B3%E7%B4%85%E7%87%92%F0%A9%B5%9A%E9%AD%A0%E9%AD%9A%E7%BE%B9%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "11:45–11:55", "place": "前往西門淺草", "transport": "WeMo｜450 m｜預留10分", "note": "含找車、停車及步行進入。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E9%96%80%E6%B7%BA%E8%8D%89%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%A5%BD%E5%91%B3%E7%B4%85%E7%87%92%F0%A9%B5%9A%E9%AD%A0%E9%AD%9A%E7%BE%B9%20%E5%8F%B0%E5%8D%97&destination=%E8%A5%BF%E9%96%80%E6%B7%BA%E8%8D%89%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "11:55–12:35", "place": "西門淺草", "transport": "—", "note": "實際約40分。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E9%96%80%E6%B7%BA%E8%8D%89%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "12:35–12:50", "place": "前往又又美 FotoShop", "transport": "WeMo｜1.7 km｜約15分", "note": "—", "reserve": "開啟單日包車", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8F%88%E5%8F%88%E7%BE%8E%20FotoShop%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E8%A5%BF%E9%96%80%E6%B7%BA%E8%8D%89%20%E5%8F%B0%E5%8D%97&destination=%E5%8F%88%E5%8F%88%E7%BE%8E%20FotoShop%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "12:50–13:30", "place": "又又美 FotoShop", "transport": "—", "note": "實際約40分；這站不用趕。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%8F%88%E5%8F%88%E7%BE%8E%20FotoShop%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "13:30–13:45", "place": "前往保安路米糕", "transport": "WeMo｜1.4 km｜約15分", "note": "—", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E4%BF%9D%E5%AE%89%E8%B7%AF%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%8F%88%E5%8F%88%E7%BE%8E%20FotoShop%20%E5%8F%B0%E5%8D%97&destination=%E4%BF%9D%E5%AE%89%E8%B7%AF%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "13:45–14:25", "place": "保安路米糕", "transport": "—", "note": "實際約40分；米糕(大)+四神湯。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E4%BF%9D%E5%AE%89%E8%B7%AF%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "約14:25", "place": "電話確認府城黃家蝦捲", "transport": "電話0900642600｜約5分", "note": "可在離開米糕前處理。兩條蝦捲。", "reserve": "建議", "kind": "action", "icon": "☎", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%BA%9C%E5%9F%8E%E9%BB%83%E5%AE%B6%E8%9D%A6%E6%8D%B2%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": ["0900642600"]}, {"time": "14:25–14:40", "place": "前往府城黃家蝦捲", "transport": "WeMo｜2.6 km｜約15分", "note": "含找車、停車與緩衝。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%BA%9C%E5%9F%8E%E9%BB%83%E5%AE%B6%E8%9D%A6%E6%8D%B2%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E4%BF%9D%E5%AE%89%E8%B7%AF%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97&destination=%E5%BA%9C%E5%9F%8E%E9%BB%83%E5%AE%B6%E8%9D%A6%E6%8D%B2%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "14:40–15:00", "place": "府城黃家蝦捲", "transport": "—", "note": "實際約20分；兩條蝦捲，兩人各 1 條。", "reserve": "建議先確認／預留", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%BA%9C%E5%9F%8E%E9%BB%83%E5%AE%B6%E8%9D%A6%E6%8D%B2%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "15:00–15:25", "place": "前往安平定情碼頭德陽艦園區", "transport": "WeMo｜5.0 km｜約25分", "note": "正式往安平。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%AE%89%E5%B9%B3%E5%AE%9A%E6%83%85%E7%A2%BC%E9%A0%AD%E5%BE%B7%E9%99%BD%E8%89%A6%E5%9C%92%E5%8D%80%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%BA%9C%E5%9F%8E%E9%BB%83%E5%AE%B6%E8%9D%A6%E6%8D%B2%20%E5%8F%B0%E5%8D%97&destination=%E5%AE%89%E5%B9%B3%E5%AE%9A%E6%83%85%E7%A2%BC%E9%A0%AD%E5%BE%B7%E9%99%BD%E8%89%A6%E5%9C%92%E5%8D%80%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "15:25–16:25", "place": "安平定情碼頭德陽艦園區", "transport": "—", "note": "完整1小時。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%AE%89%E5%B9%B3%E5%AE%9A%E6%83%85%E7%A2%BC%E9%A0%AD%E5%BE%B7%E9%99%BD%E8%89%A6%E5%9C%92%E5%8D%80%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "16:25–16:40", "place": "前往安平樹屋／安平老街", "transport": "WeMo｜3.1 km｜約15分", "note": "不要拖延，後面有關館時間。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%AE%89%E5%B9%B3%E6%A8%B9%E5%B1%8B%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%AE%89%E5%B9%B3%E5%AE%9A%E6%83%85%E7%A2%BC%E9%A0%AD%E5%BE%B7%E9%99%BD%E8%89%A6%E5%9C%92%E5%8D%80%20%E5%8F%B0%E5%8D%97&destination=%E5%AE%89%E5%B9%B3%E6%A8%B9%E5%B1%8B%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "16:40–17:10", "place": "安平樹屋／安平老街", "transport": "—", "note": "完整30分。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%AE%89%E5%B9%B3%E6%A8%B9%E5%B1%8B%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "17:10–17:25", "place": "前往觀夕平臺", "transport": "WeMo｜2.9 km｜約15分", "note": "提早抵達等夕陽。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%A7%80%E5%A4%95%E5%B9%B3%E5%8F%B0%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%AE%89%E5%B9%B3%E6%A8%B9%E5%B1%8B%20%E5%8F%B0%E5%8D%97&destination=%E8%A7%80%E5%A4%95%E5%B9%B3%E5%8F%B0%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "17:25–18:10", "place": "觀夕平臺", "transport": "—", "note": "日落時間18:04；實際約45分；看海、夕陽。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%A7%80%E5%A4%95%E5%B9%B3%E5%8F%B0%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "18:10–18:40", "place": "前往福昇小食鱔魚意麵", "transport": "WeMo｜7.0 km｜約30分", "note": "第二天最長單段移動。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E6%98%87%E5%B0%8F%E9%A3%9F%E9%B1%94%E9%AD%9A%E6%84%8F%E9%BA%B5%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E8%A7%80%E5%A4%95%E5%B9%B3%E5%8F%B0%20%E5%8F%B0%E5%8D%97&destination=%E7%A6%8F%E6%98%87%E5%B0%8F%E9%A3%9F%E9%B1%94%E9%AD%9A%E6%84%8F%E9%BA%B5%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "18:40–19:30", "place": "福昇小食鱔魚意麵", "transport": "—", "note": "實際約50分；炒鱔魚意麵（乾）外帶。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E6%98%87%E5%B0%8F%E9%A3%9F%E9%B1%94%E9%AD%9A%E6%84%8F%E9%BA%B5%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "19:30–19:35", "place": "前往水仙宮粽葉米糕", "transport": "步行｜100 m｜約5分", "note": "很近。", "reserve": "—", "kind": "move", "icon": "🚶", "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%B0%B4%E4%BB%99%E5%AE%AE%E7%B2%BD%E8%91%89%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E7%A6%8F%E6%98%87%E5%B0%8F%E9%A3%9F%E9%B1%94%E9%AD%9A%E6%84%8F%E9%BA%B5%20%E5%8F%B0%E5%8D%97&destination=%E6%B0%B4%E4%BB%99%E5%AE%AE%E7%B2%BD%E8%91%89%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97&travelmode=walking", "phones": []}, {"time": "19:35–20:10", "place": "水仙宮粽葉米糕", "transport": "—", "note": "實際約35分；米糕（大）外帶。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%B0%B4%E4%BB%99%E5%AE%AE%E7%B2%BD%E8%91%89%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "20:10–20:20", "place": "前往阿卿杏仁茶", "transport": "WeMo｜950 m｜約10分", "note": "—", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%98%BF%E5%8D%BF%E6%9D%8F%E4%BB%81%E8%8C%B6%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E6%B0%B4%E4%BB%99%E5%AE%AE%E7%B2%BD%E8%91%89%E7%B1%B3%E7%B3%95%20%E5%8F%B0%E5%8D%97&destination=%E9%98%BF%E5%8D%BF%E6%9D%8F%E4%BB%81%E8%8C%B6%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "20:20–20:45", "place": "阿卿杏仁茶", "transport": "—", "note": "實際約25分；１中杯杏仁茶，１個甜燒餅。", "reserve": "不用", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%98%BF%E5%8D%BF%E6%9D%8F%E4%BB%81%E8%8C%B6%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "20:45–20:50", "place": "前往海安路藝術街", "transport": "步行｜400 m｜約5分", "note": "—", "reserve": "—", "kind": "move", "icon": "🚶", "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%B5%B7%E5%AE%89%E8%B7%AF%E8%97%9D%E8%A1%93%E8%A1%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%98%BF%E5%8D%BF%E6%9D%8F%E4%BB%81%E8%8C%B6%20%E5%8F%B0%E5%8D%97&destination=%E6%B5%B7%E5%AE%89%E8%B7%AF%E8%97%9D%E8%A1%93%E8%A1%97%20%E5%8F%B0%E5%8D%97&travelmode=walking", "phones": []}, {"time": "20:50–21:05", "place": "海安路藝術街散步", "transport": "—", "note": "完整15分；飯後散步。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E6%B5%B7%E5%AE%89%E8%B7%AF%E8%97%9D%E8%A1%93%E8%A1%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "21:05–21:15", "place": "前往道達旅店", "transport": "步行｜550 m｜約10分", "note": "—", "reserve": "—", "kind": "move", "icon": "🚶", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E6%B5%B7%E5%AE%89%E8%B7%AF%E8%97%9D%E8%A1%93%E8%A1%97%20%E5%8F%B0%E5%8D%97&destination=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&travelmode=walking", "phones": []}, {"time": "21:15後", "place": "回飯店休息", "transport": "—", "note": "Day 2 結束。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}]}, {"id": "day3", "day": "Day 3", "date": "9/15（二）", "route": "上午完全不排行程；12:00退房後才開始活動。鼎富發與南美館保留完整停留時間，最後利用蘇果の森林靠近車站的優勢收尾。", "rows": [{"time": "07:00–07:30", "place": "道達旅店早餐", "transport": "—", "note": "吃飯店早餐即可。", "reserve": "—", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "07:30–11:50", "place": "飯店休息、整理行李", "transport": "—", "note": "睡飽、整理行李、確認車票與物品。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": null, "nav_url": null, "phones": []}, {"time": "11:50–12:00", "place": "最後確認房間", "transport": "—", "note": "檢查充電器、冰箱、浴室等。", "reserve": "—", "kind": "stop", "icon": "•", "map_url": null, "nav_url": null, "phones": []}, {"time": "12:00", "place": "道達旅店退房＋寄放行李", "transport": "—", "note": "後續輕裝行動。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "12:00–12:10", "place": "前往鼎富發豬油拌飯", "transport": "WeMo｜700 m｜約10分", "note": "店附近有專屬的停車場（鼎富發機車停車場）。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%BC%8E%E5%AF%8C%E7%99%BC%E8%B1%AC%E6%B2%B9%E6%8B%8C%E9%A3%AF%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&destination=%E9%BC%8E%E5%AF%8C%E7%99%BC%E8%B1%AC%E6%B2%B9%E6%8B%8C%E9%A3%AF%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "12:10–12:50", "place": "鼎富發豬油拌飯", "transport": "—", "note": "預留約40分；可以點套餐便宜５元。", "reserve": "不用／現場候位", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%BC%8E%E5%AF%8C%E7%99%BC%E8%B1%AC%E6%B2%B9%E6%8B%8C%E9%A3%AF%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "12:50–13:00", "place": "前往臺南市美術館1館", "transport": "WeMo｜1.2 km｜約10分", "note": "交通時間另外算。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8D%97%E5%B8%82%E7%BE%8E%E8%A1%93%E9%A4%A81%E9%A4%A8", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%BC%8E%E5%AF%8C%E7%99%BC%E8%B1%AC%E6%B2%B9%E6%8B%8C%E9%A3%AF%20%E5%8F%B0%E5%8D%97&destination=%E8%87%BA%E5%8D%97%E5%B8%82%E7%BE%8E%E8%A1%93%E9%A4%A81%E9%A4%A8&travelmode=driving", "phones": []}, {"time": "13:00–14:30", "place": "臺南市美術館1館", "transport": "—", "note": "完整1小時30分；第三天主要景點。", "reserve": "不用", "kind": "stop", "icon": "📍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8D%97%E5%B8%82%E7%BE%8E%E8%A1%93%E9%A4%A81%E9%A4%A8", "nav_url": null, "phones": []}, {"time": "約14:05", "place": "打電話給鄭記蔥肉餅-西門店", "transport": "電話0919116465｜約5分", "note": "還在美術館時先聯絡、確認是否可預訂兩份蔥肉餅", "reserve": "建議", "kind": "action", "icon": "☎", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%84%AD%E8%A8%98%E8%94%A5%E8%82%89%E9%A4%85%20%E8%A5%BF%E9%96%80%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": ["0919116465"]}, {"time": "約14:10", "place": "打電話給夏林蔥油餅", "transport": "電話0931922520／096390822｜約5分", "note": "還在美術館時先聯絡、確認是否可預訂一份蔥油餅。", "reserve": "建議", "kind": "action", "icon": "☎", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%8F%E6%9E%97%E8%94%A5%E6%B2%B9%E9%A4%85%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": ["0931922520", "096390822"]}, {"time": "14:30–14:40", "place": "前往鄭記蔥肉餅-西門店", "transport": "WeMo｜1 km｜約10分", "note": "離開美術館後直接過去。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%84%AD%E8%A8%98%E8%94%A5%E8%82%89%E9%A4%85%20%E8%A5%BF%E9%96%80%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E8%87%BA%E5%8D%97%E5%B8%82%E7%BE%8E%E8%A1%93%E9%A4%A81%E9%A4%A8&destination=%E9%84%AD%E8%A8%98%E8%94%A5%E8%82%89%E9%A4%85%20%E8%A5%BF%E9%96%80%E5%BA%97%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "14:40–14:45", "place": "鄭記蔥肉餅-西門店取餐", "transport": "—", "note": "實際約5分；以取餐為主。", "reserve": "14:05先聯絡", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%84%AD%E8%A8%98%E8%94%A5%E8%82%89%E9%A4%85%20%E8%A5%BF%E9%96%80%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "14:45–14:50", "place": "前往夏林蔥油餅", "transport": "WeMo｜950m｜約5分", "note": "取餐後直接過去。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%8F%E6%9E%97%E8%94%A5%E6%B2%B9%E9%A4%85%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E9%84%AD%E8%A8%98%E8%94%A5%E8%82%89%E9%A4%85%20%E8%A5%BF%E9%96%80%E5%BA%97%20%E5%8F%B0%E5%8D%97&destination=%E5%A4%8F%E6%9E%97%E8%94%A5%E6%B2%B9%E9%A4%85%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "14:50–14:55", "place": "夏林蔥油餅取餐", "transport": "—", "note": "實際約5分；以取餐為主。", "reserve": "14:30先聯絡", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%8F%E6%9E%97%E8%94%A5%E6%B2%B9%E9%A4%85%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "14:55–15:05", "place": "前往道達旅店", "transport": "WeMo｜1.1 km｜約10分", "note": "回飯店拿行李。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E5%A4%8F%E6%9E%97%E8%94%A5%E6%B2%B9%E9%A4%85%20%E5%8F%B0%E5%8D%97&destination=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "15:05–15:30", "place": "道達旅店取行李吃點心", "transport": "—", "note": "預留約25分。", "reserve": "—", "kind": "stop", "icon": "🏨", "map_url": "https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%81%94%E6%97%85%E5%BA%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "15:20前後", "place": "Foodpanda 下單蘇果の森林", "transport": "手機｜約5分", "note": "使用外帶自取5折優惠。", "reserve": "建議提前下單", "kind": "action", "icon": "🛍", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%98%87%E6%9E%9C%E3%81%AE%E6%A3%AE%E6%9E%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "15:30–15:45", "place": "前往蘇果の森林", "transport": "WeMo｜2.3 km｜約15分", "note": "含找車、停車緩衝。", "reserve": "—", "kind": "move", "icon": "🛵", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%98%87%E6%9E%9C%E3%81%AE%E6%A3%AE%E6%9E%97%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E8%98%87%E6%9E%9C%E3%81%AE%E6%A3%AE%E6%9E%97%20%E5%8F%B0%E5%8D%97&destination=%E8%98%87%E6%9E%9C%E3%81%AE%E6%A3%AE%E6%9E%97%20%E5%8F%B0%E5%8D%97&travelmode=driving", "phones": []}, {"time": "15:45–15:50", "place": "蘇果の森林取飲料", "transport": "—", "note": "約5分，不在現場久留。", "reserve": "已先下單", "kind": "stop", "icon": "🍴", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%98%87%E6%9E%9C%E3%81%AE%E6%A3%AE%E6%9E%97%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "15:50–16:00", "place": "前往臺南車站", "transport": "步行｜500 m｜約10分", "note": "最後一段直接往車站。", "reserve": "—", "kind": "move", "icon": "🚶", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8D%97%E8%BB%8A%E7%AB%99%20%E5%8F%B0%E5%8D%97", "nav_url": "https://www.google.com/maps/dir/?api=1&origin=%E8%98%87%E6%9E%9C%E3%81%AE%E6%A3%AE%E6%9E%97%20%E5%8F%B0%E5%8D%97&destination=%E8%87%BA%E5%8D%97%E8%BB%8A%E7%AB%99%20%E5%8F%B0%E5%8D%97&travelmode=walking", "phones": []}, {"time": "16:00–16:26", "place": "臺南車站候車", "transport": "—", "note": "26分鐘安全緩衝；上廁所、找月台。", "reserve": "—", "kind": "train", "icon": "🚆", "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8D%97%E8%BB%8A%E7%AB%99%20%E5%8F%B0%E5%8D%97", "nav_url": null, "phones": []}, {"time": "16:26", "place": "臺南 → 台中火車", "transport": "臺鐵", "note": "三天行程結束。", "reserve": "車票已確定", "kind": "train", "icon": "🚆", "map_url": null, "nav_url": null, "phones": []}]}];
+
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+function isHot(reserve, place){
+  const t = (reserve + " " + place);
+  return /要先|建議|先聯絡|預訂|下單|車票/.test(t) && !/不用/.test(t);
+}
+
+function render(){
+  const root = document.getElementById('content');
+  root.innerHTML = days.map((d, di) => {
+    const reminders = d.rows.filter(r =>
+      r.kind === 'action' || r.kind === 'train' || isHot(r.reserve, r.place) || /日落/.test(r.note)
+    ).slice(0,7);
+
+    return `
+      <section class="day ${di===0?'active':''}" id="${d.id}">
+        <div class="day-head">
+          <div class="date">${esc(d.day)}｜${esc(d.date)}</div>
+          <div class="route">${esc(d.route)}</div>
+        </div>
+        ${reminders.length ? `
+          <div class="quick"><b>今天要特別注意：</b><br>
+            ${reminders.map(r => `• ${esc(r.time)}　${esc(r.place)}${r.reserve && r.reserve!=='—' ? `（${esc(r.reserve)}）` : ''}`).join('<br>')}
+          </div>` : ''}
+        <div class="timeline">
+          ${d.rows.map((r, ri) => {
+            const key = `${d.id}-${ri}`;
+            const checked = localStorage.getItem('tainan-'+key) === '1';
+            const hot = isHot(r.reserve, r.place);
+            let buttons = '';
+            if(r.nav_url) buttons += `<a class="btn primary" href="${esc(r.nav_url)}" target="_blank" rel="noopener">導航</a>`;
+            else if(r.map_url) buttons += `<a class="btn primary" href="${esc(r.map_url)}" target="_blank" rel="noopener">Google Maps</a>`;
+            if(r.phones && r.phones.length){
+              buttons += r.phones.map((p,i)=>`<a class="btn call" href="tel:${esc(p)}">撥打${r.phones.length>1?' '+(i+1):''}</a>`).join('');
+            }
+            return `
+              <article class="card ${esc(r.kind)} ${checked?'done':''}" data-key="${key}">
+                <div class="top">
+                  <input class="check" type="checkbox" ${checked?'checked':''} aria-label="標記完成">
+                  <div class="content">
+                    <div class="time">${esc(r.time)}</div>
+                    <div class="title">${esc(r.icon)} ${esc(r.place)}</div>
+                    ${r.transport && r.transport !== '—' ? `<div class="meta">${esc(r.transport)}</div>` : ''}
+                    ${r.note ? `<div class="note">${esc(r.note)}</div>` : ''}
+                    ${r.reserve && r.reserve !== '—' ? `<span class="reserve ${hot?'hot':''}">${esc(r.reserve)}</span>` : ''}
+                    ${buttons ? `<div class="actions">${buttons}</div>` : ''}
+                  </div>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  document.querySelectorAll('.check').forEach(ch => {
+    ch.addEventListener('change', e => {
+      const card = e.target.closest('.card');
+      const key = card.dataset.key;
+      localStorage.setItem('tainan-'+key, e.target.checked ? '1' : '0');
+      card.classList.toggle('done', e.target.checked);
+    });
+  });
+}
+
+function switchDay(dayId){
+  document.querySelectorAll('.day').forEach(x=>x.classList.toggle('active',x.id===dayId));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.day===dayId));
+  localStorage.setItem('tainan-active-day', dayId);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>switchDay(btn.dataset.day));
+});
+
+const savedDay = localStorage.getItem('tainan-active-day');
+if(savedDay && document.getElementById(savedDay)) switchDay(savedDay);
+
+document.getElementById('currentBtn').addEventListener('click',()=>{
+  const active = document.querySelector('.day.active');
+  const next = [...active.querySelectorAll('.card')].find(c=>!c.classList.contains('done'));
+  if(next) next.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  const active = document.querySelector('.day.active');
+  active.querySelectorAll('.card').forEach(c=>{
+    localStorage.removeItem('tainan-'+c.dataset.key);
+    c.classList.remove('done');
+    const chk=c.querySelector('.check'); if(chk) chk.checked=false;
+  });
+});
+</script>
+</body>
+</html>
