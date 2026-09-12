@@ -324,6 +324,8 @@ function characterArt(row){
   const text = `${row.place ?? ''} ${row.note ?? ''} ${row.transport ?? ''}`;
   let type = 'rest';
   if(/出站、整理、找共享機車/.test(text)) type = 'luggage';
+  else if(/打電話給夏林臭豆腐/.test(text)) type = 'action';
+  else if(/前往夏林臭豆腐/.test(text)) type = 'ride';
   else if(/夏林臭豆腐|福昇小食鱔魚意麵|水仙宮粽葉米糕|道達旅店取行李吃點心/.test(text)) type = 'food';
   else if(/飯店休息、整理行李|臺南車站候車/.test(text)) type = 'together';
   else if(/Foodpanda 下單蘇果の森林/.test(text)) type = 'action';
